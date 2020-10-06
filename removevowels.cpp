@@ -2,6 +2,7 @@
 #include <string>
 using namespace std;
 
+bool isVowel(char)
 string removeVowels(string);
 
 int main()
@@ -27,16 +28,30 @@ int main()
   return 0;
 }
 
+bool isVowel(char letter)
+{
+  if (isupper(letter))
+      letter = tolower(letter);
+  
+  if (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u')
+      return true;
+  else
+      return false;
+}
+
 string removeVowels(string word)
 {
   string wordHalf1, wordHalf2;
   
   for (int i = 0; i < word.length(); i++)
   {
-    wordHalf1 = word.substr(0, i);
-    wordHalf2 = word.substr(i + 1, word.length());
-    word = wordHalf1 + wordHalf2;
-    i--;
+    if (isVowel(word[i]))
+    {
+       wordHalf1 = word.substr(0, i);
+       wordHalf2 = word.substr(i + 1, word.length());
+       word = wordHalf1 + wordHalf2;
+       i--;
+    }
   }
   
   return word;
